@@ -19,7 +19,14 @@ class Student
   end
   
   def self.drop_table
-    students.clear
+    sql =  <<-SQL 
+      DROP TABLE IF EXISTS students (
+        id INTEGER PRIMARY KEY, 
+        name TEXT, 
+        gradeTEXT
+        )
+        SQL
+    DB[:conn].execute(sql) 
   end
 
   # Remember, you can access your database connection anywhere in this class
